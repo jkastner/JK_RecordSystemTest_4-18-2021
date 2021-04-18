@@ -5,8 +5,12 @@ using System.Threading.Tasks;
 
 namespace RecordsAPI.Models
 {
-    public class RecordsModel : IRecordsModel
+    public class LocalRecordsModel : IRecordsModel
     {
+        public LocalRecordsModel()
+        {
+
+        }
     }
 
     public interface IRecordsModel

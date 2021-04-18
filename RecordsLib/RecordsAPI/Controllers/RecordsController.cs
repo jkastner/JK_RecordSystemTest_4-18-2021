@@ -18,13 +18,12 @@ namespace RecordsAPI.Controllers
         public RecordController(ILogger<RecordController> logger)
         {
             _logger = logger;
-            RecordSet rs = new RecordSet();
         }
 
         [HttpGet]
         public IEnumerable<Record> Get()
         {
-           
+            return null;
         }
     }
 }

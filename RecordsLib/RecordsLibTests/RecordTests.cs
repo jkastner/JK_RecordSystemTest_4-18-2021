@@ -23,17 +23,15 @@ namespace RecordsLibTests
         [TestCase("DataSpace.txt")]
         public void TestParsing(string target)
         {
-            string fileText = this.GetTextFromFile(target);
-            var fileLines = fileText.Split(Environment.NewLine);
-
-            RecordParser p = GetParser();
-            var csvRecords = p.FromString(fileLines).ToList();
-            VerifyRecord(csvRecords);
-
+            LocalRecordSet set = new LocalRecordSet(target);
+            set.InitializeRecords();
+            VerifyRecord(set.Data);
         }
 
-        private void VerifyRecord(List<Record> recs)
+        private void VerifyRecord(IEnumerable<Record> recList)
         {
+            var recs = recList.ToList();
+
             recs.Count.Should().Be(14);
             recs[0].FirstName.Should().Be("Mykhaylo");
             recs[0].LastName.Should().Be("Shwetz");
@@ -71,39 +69,13 @@ namespace RecordsLibTests
             }
         }
 
-        private RecordParser GetParser()
-        {
-            return new RecordParser(new DummyErrorLogger());
-        }
-
-        private string GetTextFromFile(string filename)
-        {
-            string result = string.Empty;
-
-
-            using (Stream stream = typeof(Record).Assembly.
-                GetManifestResourceStream($"RecordsLib.Data.{filename}"))
-            {
-                using (StreamReader sr = new StreamReader(stream))
-                {
-                    result = sr.ReadToEnd();
-                }
-            }
-            return result;
-        }
-
+       
 
         [Test]
         public void TestSorting()
         {
-            string fileText = this.GetTextFromFile("DataCSV.txt");
-            var fileLines = fileText.Split(Environment.NewLine);
-
-            RecordParser p = GetParser();
-            var csvRecords = p.FromString(fileLines).ToList();
-
-            RecordSet rs = new RecordSet();
-            rs.Populate(csvRecords);
+            LocalRecordSet rs = new LocalRecordSet("DataCSV.txt");
+            rs.InitializeRecords();
 
             var byName = rs.ByLastName().ToList();
             byName.First().LastName.Should().Be("Upton");

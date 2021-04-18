@@ -27,7 +27,7 @@ namespace RecordsAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IRecordsModel, RecordsModel>();
+            services.AddSingleton<IRecordsModel, LocalRecordsModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
