@@ -1,12 +1,12 @@
 Shwetz|Mykhaylo|Male|Red|1952-03-04
 Klements|Tadej|Male|Orange|1955-02-14
 Baghdassarian|Anahit|Female|Yellow|1992-04-06
-|Sieglinde|Female|Green|1994-02-11
+Bergson|Sieglinde|Female|Green|1994-02-11
 Hampton|Harvey|Male|Blue|2034-01-05
 Rice|America|Female|Indigo|1967-07-11
 |Zola|Female|Violet|1971-06-04
 Lucas|Rebecca|Female|BadData|1984-08-14
-Kimball|Kellie|Female||1998-11-02
+Kimball|Kellie|Female|_|1998-11-02
 Anson|Glen|Male|Purpley|2014-04-16
 Hobbs|Clint|Male|RoyalBlue|1951-03-23
 Collins|Gill|Female|Crimson|1975-03-25

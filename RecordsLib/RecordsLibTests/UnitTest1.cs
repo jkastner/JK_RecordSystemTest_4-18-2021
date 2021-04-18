@@ -16,9 +16,12 @@ namespace RecordsLibTests
         }
 
         [Test]
-        public void TestCSVParsing()
+        [TestCase("DataCSV.txt")]
+        [TestCase("DataPipe.txt")]
+        [TestCase("DataSpace.txt")]
+        public void TestCSVParsing(string target)
         {
-            string fileText = this.GetTextFromFile("DataCSV.txt");
+            string fileText = this.GetTextFromFile(target);
             var fileLines = fileText.Split(Environment.NewLine);
 
             RecordParser p = GetParser();
@@ -34,13 +37,13 @@ namespace RecordsLibTests
             recs[0].LastName.Should().Be("Shwetz");
             recs[0].Gender.Should().Be("Male");
             recs[0].FavoriteColor.Should().Be("Red");
-            recs[0].FavoriteColor.Should().Be("1952-03-04");
+            recs[0].DateOfBirth.Should().Be("1952-03-04");
                
             recs[13].FirstName.Should().Be("Dominic");
             recs[13].LastName.Should().Be("Leavitt");
             recs[13].Gender.Should().Be("Male");
             recs[13].FavoriteColor.Should().Be("NeonGreen");
-            recs[13].FavoriteColor.Should().Be("2023-12-08");
+            recs[13].DateOfBirth.Should().Be("2023-12-08");
 
             recs.Count(x => string.IsNullOrEmpty(x.FirstName)).Should().Be(0);
             recs.Count(x => string.IsNullOrEmpty(x.LastName)).Should().Be(1);
@@ -77,9 +80,7 @@ namespace RecordsLibTests
         {
             string result = string.Empty;
 
-            
-            var allFiles = typeof(Record).Assembly.
-                GetManifestResourceNames();
+
             using (Stream stream = typeof(Record).Assembly.
                 GetManifestResourceStream($"RecordsLib.Data.{filename}"))
             {
