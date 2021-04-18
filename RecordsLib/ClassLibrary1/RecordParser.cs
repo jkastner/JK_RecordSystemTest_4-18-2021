@@ -55,7 +55,7 @@ namespace RecordsLib
                 logger.LogError("Text did not contain expected delimiters");
                 yield break;
             }
-            foreach(var curLine in recordLines)
+            foreach(var curLine in recordLines.Where(x=>!string.IsNullOrEmpty(x)))
             {
                 //assuming all lines behave after that first check
                 Record ret = new Record();

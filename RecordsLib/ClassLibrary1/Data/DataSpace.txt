@@ -1,14 +1,14 @@
-Mykhaylo Shwetz Male Red 1952-03-04
-Tadej Klements Male Orange 1955-02-14
-Anahit Baghdassarian Female Yellow 1992-04-06
-Sieglinde  Female Green 1994-02-11
-Harvey Hampton Male Blue 2034-01-05
-America Rice Female Indigo 1967-07-11
-Zola  Female Violet 1971-06-04
-Rebecca Lucas Female BadData 1984-08-14
-Kellie Kimball Female  1998-11-02
-Glen Anson Male Purpley 2014-04-16
-Clint Hobbs Male RoyalBlue 1951-03-23
-Gill Collins Female Crimson 1975-03-25
-Tori Upton Female Chocolate 1979-06-05
-Dominic Leavitt Male NeonGreen 2023-12-08
+Shwetz Mykhaylo Male Red 1952-03-04
+Klements Tadej Male Orange 1955-02-14
+Baghdassarian Anahit Female Yellow 1992-04-06
+ Sieglinde Female Green 1994-02-11
+Hampton Harvey Male Blue 2034-01-05
+Rice America Female Indigo 1967-07-11
+ Zola Female Violet 1971-06-04
+Lucas Rebecca Female BadData 1984-08-14
+Kimball Kellie Female  1998-11-02
+Anson Glen Male Purpley 2014-04-16
+Hobbs Clint Male RoyalBlue 1951-03-23
+Collins Gill Female Crimson 1975-03-25
+Upton Tori Female Chocolate 1979-06-05
+Leavitt Dominic Male NeonGreen 2023-12-08
