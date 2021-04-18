@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordsLib", "ClassLibrary1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordsLibTests", "RecordsLibTests\RecordsLibTests.csproj", "{3441BCE5-3D1C-4D85-AF94-3A24E5336955}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordsAPI", "RecordsAPI\RecordsAPI.csproj", "{756EE502-BBB5-4DFF-B0C2-B61E34725AC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3441BCE5-3D1C-4D85-AF94-3A24E5336955}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3441BCE5-3D1C-4D85-AF94-3A24E5336955}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3441BCE5-3D1C-4D85-AF94-3A24E5336955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{756EE502-BBB5-4DFF-B0C2-B61E34725AC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{756EE502-BBB5-4DFF-B0C2-B61E34725AC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{756EE502-BBB5-4DFF-B0C2-B61E34725AC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{756EE502-BBB5-4DFF-B0C2-B61E34725AC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
