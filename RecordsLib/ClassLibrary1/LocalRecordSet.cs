@@ -11,6 +11,8 @@ namespace RecordsLib
     {
         private readonly string fileName;
 
+    
+ 
         public LocalRecordSet(string fileName)
         {
             this.fileName = fileName;
@@ -25,7 +27,7 @@ namespace RecordsLib
 
             RecordParser p = new RecordParser(new DummyErrorLogger());
             var csvRecords = p.FromString(fileLines).ToList();
-            this.Populate(csvRecords);
+            this.AddRecords(csvRecords);
         }
 
 

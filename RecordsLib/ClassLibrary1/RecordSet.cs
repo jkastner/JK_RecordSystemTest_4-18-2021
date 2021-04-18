@@ -5,33 +5,45 @@ using System.Text;
 
 namespace RecordsLib
 {
-    public abstract class BaseRecordSet
+    public interface IRecordSet
     {
-        public List<Record> data = new List<Record>();
+        IEnumerable<IRecord> ByGender();
+        IEnumerable<IRecord> ByBirthDate();
+        IEnumerable<IRecord> ByLastName();
+        IReadOnlyList<IRecord> Data { get; }
+    }
 
-        public IReadOnlyList<Record> Data => data;
+    public abstract class BaseRecordSet : IRecordSet
+    {
+        public List<IRecord> data = new List<IRecord>();
+
+        public IReadOnlyList<IRecord> Data => data;
 
         public abstract void InitializeRecords();
         
-        public IEnumerable<Record> ByGender()
+        public IEnumerable<IRecord> ByGender()
         {
             return Data.OrderBy(x => x.Gender).
                 ThenBy(x=>x.LastName);
         }      
         
-        public IEnumerable<Record> ByBirthDate()
+        public IEnumerable<IRecord> ByBirthDate()
         {
             return Data.OrderBy(x => x.DateOfBirth);
         }
         
-        public IEnumerable<Record> ByLastName()
+        public IEnumerable<IRecord> ByLastName()
         {
             return Data.OrderByDescending(x => x.LastName);
         }
 
-        public void Populate(List<Record> csvRecords)
+        public void AddRecords(IEnumerable<IRecord> records)
         {
-            this.data.AddRange(csvRecords);
+            this.data.AddRange(records);
         }
+
+
     }
+
+
 }

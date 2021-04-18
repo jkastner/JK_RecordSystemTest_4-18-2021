@@ -28,7 +28,26 @@ namespace RecordsLibTests
             VerifyRecord(set.Data);
         }
 
-        private void VerifyRecord(IEnumerable<Record> recList)
+        [TestCase(null)]
+        [TestCase("Smith,Bob,Female,Orange,NotADate")]
+        [TestCase("Bad,Length,Orange,1-1-1984")]
+        [TestCase("Smith,Bob,Female,Orange,1-1-1984,ExtraStuff")]
+        public void TestBadData(string data)
+        {
+            RecordParser rp = new RecordParser(new DummyErrorLogger());
+            var items = rp.FromString(new string[] { data });
+            items.Count().Should().Be(0);
+        }   
+        
+        [TestCase("Smith,Bob,Female,Orange,1-1-1984")]
+        public void TestGoodData(string data)
+        {
+            RecordParser rp = new RecordParser(new DummyErrorLogger());
+            var items = rp.FromString(new string[] { data });
+            items.Count().Should().Be(1);
+        }
+
+        private void VerifyRecord(IEnumerable<IRecord> recList)
         {
             var recs = recList.ToList();
 
@@ -37,13 +56,13 @@ namespace RecordsLibTests
             recs[0].LastName.Should().Be("Shwetz");
             recs[0].Gender.Should().Be("Male");
             recs[0].FavoriteColor.Should().Be("Red");
-            recs[0].DateOfBirth.ToString("yyyy-MM-dd").Should().Be("1952-03-04");
+            recs[0].DateOfBirth.Value.ToString("yyyy-MM-dd").Should().Be("1952-03-04");
                
             recs[13].FirstName.Should().Be("Dominic");
             recs[13].LastName.Should().Be("Leavitt");
             recs[13].Gender.Should().Be("Male");
             recs[13].FavoriteColor.Should().Be("NeonGreen");
-            recs[13].DateOfBirth.ToString("yyyy-MM-dd").Should().Be("2023-12-08");
+            recs[13].DateOfBirth.Value.ToString("yyyy-MM-dd").Should().Be("2023-12-08");
 
             recs.Count(x => string.IsNullOrEmpty(x.FirstName)).Should().Be(0);
             recs.Count(x => string.IsNullOrEmpty(x.LastName)).Should().Be(1);
@@ -64,8 +83,8 @@ namespace RecordsLibTests
                 uniqueness.Should().NotContain(curRecord.FavoriteColor);
                 uniqueness.Add(curRecord.FavoriteColor);
 
-                uniqueness.Should().NotContain(curRecord.DateOfBirth.ToString("yyyy-mm-dd"));
-                uniqueness.Add(curRecord.DateOfBirth.ToString("yyyy-mm-dd"));
+                uniqueness.Should().NotContain(curRecord.DateOfBirth.Value.ToString("yyyy-mm-dd"));
+                uniqueness.Add(curRecord.DateOfBirth.Value.ToString("yyyy-mm-dd"));
             }
         }
 
