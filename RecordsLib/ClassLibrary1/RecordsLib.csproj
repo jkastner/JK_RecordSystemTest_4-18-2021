@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <None Remove="Data\DataCSV.txt" />
+    <None Remove="Data\DataPipe.txt" />
+    <None Remove="Data\DataSpace.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\DataCSV.txt" />
+    <EmbeddedResource Include="Data\DataPipe.txt" />
+    <EmbeddedResource Include="Data\DataSpace.txt" />
   </ItemGroup>
 
 </Project>
