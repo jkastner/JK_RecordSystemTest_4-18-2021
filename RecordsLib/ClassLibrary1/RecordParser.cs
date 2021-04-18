@@ -64,12 +64,16 @@ namespace RecordsLib
                 ret.FirstName = curSplit[FirstNameIndex];
                 ret.Gender = curSplit[GenderIndex];
                 ret.FavoriteColor = curSplit[FavColorIndex];
-                ret.DateOfBirth = curSplit[DOBIndex];
+                ret.DateOfBirth = ParseDate(curSplit[DOBIndex]);
                 yield return ret;
             }
 
         }
 
-
+        //for now, presuming dates all come in the same format
+        private DateTime ParseDate(string v)
+        {
+            return DateTime.Parse(v);
+        }
     }
 }

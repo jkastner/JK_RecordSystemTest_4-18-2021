@@ -12,6 +12,6 @@ namespace RecordsLib
         public string Gender { get; set; }
         public string FavoriteColor { get; set; }
         
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
     }
 }

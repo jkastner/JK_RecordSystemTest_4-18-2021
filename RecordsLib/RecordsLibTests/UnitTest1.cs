@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
+ using System.Globalization;
 
 namespace RecordsLibTests
 {
@@ -37,19 +39,19 @@ namespace RecordsLibTests
             recs[0].LastName.Should().Be("Shwetz");
             recs[0].Gender.Should().Be("Male");
             recs[0].FavoriteColor.Should().Be("Red");
-            recs[0].DateOfBirth.Should().Be("1952-03-04");
+            recs[0].DateOfBirth.ToString("yyyy-MM-dd").Should().Be("1952-03-04");
                
             recs[13].FirstName.Should().Be("Dominic");
             recs[13].LastName.Should().Be("Leavitt");
             recs[13].Gender.Should().Be("Male");
             recs[13].FavoriteColor.Should().Be("NeonGreen");
-            recs[13].DateOfBirth.Should().Be("2023-12-08");
+            recs[13].DateOfBirth.ToString("yyyy-MM-dd").Should().Be("2023-12-08");
 
             recs.Count(x => string.IsNullOrEmpty(x.FirstName)).Should().Be(0);
             recs.Count(x => string.IsNullOrEmpty(x.LastName)).Should().Be(1);
             recs.Count(x => string.IsNullOrEmpty(x.Gender)).Should().Be(0);
             recs.Count(x => string.IsNullOrEmpty(x.FavoriteColor)).Should().Be(0);
-            recs.Count(x => string.IsNullOrEmpty(x.DateOfBirth)).Should().Be(0);
+            recs.Count(x => x.DateOfBirth==DateTime.MinValue).Should().Be(0);
 
             HashSet<string> uniqueness = new HashSet<string>();
 
@@ -64,8 +66,8 @@ namespace RecordsLibTests
                 uniqueness.Should().NotContain(curRecord.FavoriteColor);
                 uniqueness.Add(curRecord.FavoriteColor);
 
-                uniqueness.Should().NotContain(curRecord.DateOfBirth);
-                uniqueness.Add(curRecord.DateOfBirth);
+                uniqueness.Should().NotContain(curRecord.DateOfBirth.ToString("yyyy-mm-dd"));
+                uniqueness.Add(curRecord.DateOfBirth.ToString("yyyy-mm-dd"));
             }
 
 
