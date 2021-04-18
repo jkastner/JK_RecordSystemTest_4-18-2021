@@ -24,5 +24,10 @@ namespace RecordsLib
         {
             return data.OrderByDescending(x => x.LastName);
         }
+
+        public void Populate(List<Record> csvRecords)
+        {
+            this.data = csvRecords;
+        }
     }
 }

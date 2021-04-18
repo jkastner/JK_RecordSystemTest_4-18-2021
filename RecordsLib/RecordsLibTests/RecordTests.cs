@@ -10,7 +10,7 @@ using System;
 
 namespace RecordsLibTests
 {
-    public class Tests
+    public class RecordTests
     {
         [SetUp]
         public void Setup()
@@ -21,7 +21,7 @@ namespace RecordsLibTests
         [TestCase("DataCSV.txt")]
         [TestCase("DataPipe.txt")]
         [TestCase("DataSpace.txt")]
-        public void TestCSVParsing(string target)
+        public void TestParsing(string target)
         {
             string fileText = this.GetTextFromFile(target);
             var fileLines = fileText.Split(Environment.NewLine);
@@ -69,8 +69,6 @@ namespace RecordsLibTests
                 uniqueness.Should().NotContain(curRecord.DateOfBirth.ToString("yyyy-mm-dd"));
                 uniqueness.Add(curRecord.DateOfBirth.ToString("yyyy-mm-dd"));
             }
-
-
         }
 
         private RecordParser GetParser()
@@ -94,6 +92,33 @@ namespace RecordsLibTests
             return result;
         }
 
+
+        [Test]
+        public void TestSorting()
+        {
+            string fileText = this.GetTextFromFile("DataCSV.txt");
+            var fileLines = fileText.Split(Environment.NewLine);
+
+            RecordParser p = GetParser();
+            var csvRecords = p.FromString(fileLines).ToList();
+
+            RecordSet rs = new RecordSet();
+            rs.Populate(csvRecords);
+
+            var byName = rs.ByLastName().ToList();
+            byName.First().LastName.Should().Be("Upton");
+            byName[12].LastName.Should().Be("Anson");
+            byName.Last().LastName.Should().Be("");
+
+            var byBirth = rs.ByBirthDate().ToList();
+            byBirth.First().DateOfBirth.Should().Be(DateTime.Parse("1951-03-23"));
+            byBirth.Last().DateOfBirth.Should().Be(DateTime.Parse("2034-01-05"));
+
+            var byGender = rs.ByGender().ToList();
+            byGender.First().LastName.Should().Be("");
+            byGender.Last().LastName.Should().Be("Shwetz");
+
+        }
 
     }
 }
